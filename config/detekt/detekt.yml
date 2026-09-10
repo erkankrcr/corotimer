@@ -1,0 +1,55 @@
+style:
+  MaxLineLength:
+    maxLineLength: 140
+
+  MagicNumber:
+    active: false
+
+  ForbiddenComment:
+    comments:
+      - "FIXME:"
+      - "STOPSHIP:"
+
+  # The engine reducer is a `when` over five phases; each branch returns early.
+  ReturnCount:
+    max: 5
+
+  UnusedPrivateMember:
+    active: true
+
+complexity:
+  LongParameterList:
+    constructorThreshold: 14
+    functionThreshold: 10
+
+  TooManyFunctions:
+    thresholdInFiles: 25
+    thresholdInClasses: 25
+    # Reducer is a single pure state machine object: one function per (event, phase) transition
+    # plus its small set of shared helpers reads better as one cohesive object than split apart.
+    thresholdInObjects: 20
+
+  ComplexCondition:
+    threshold: 6
+
+  LongMethod:
+    threshold: 80
+
+  CyclomaticComplexMethod:
+    threshold: 20
+
+coroutines:
+  # ConcurrencyStressTest deliberately hammers the engine from real OS threads via
+  # Dispatchers.Default — that is the property under test, not something to inject away.
+  InjectDispatcher:
+    active: false
+
+exceptions:
+  # Callback isolation deliberately catches Throwable so a user callback cannot
+  # kill the tick loop; the throwable is handed to the configured onError hook.
+  TooGenericExceptionCaught:
+    active: false
+  SwallowedException:
+    active: false
+  ThrowingExceptionsWithoutMessageOrCause:
+    active: false
