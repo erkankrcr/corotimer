@@ -164,6 +164,11 @@ fun countsDown() = runTest {
   is written, but they haven't been through a device/simulator test pass yet. Contributions with
   Xcode/simulator access are welcome.
 
+## Further reading
+
+[`ARCHITECTURE.md`](ARCHITECTURE.md) covers the internal engine, the format pipeline, and the
+specific bug each design decision closes off.
+
 ## License
 
 Apache License 2.0 — see [LICENSE](LICENSE).
