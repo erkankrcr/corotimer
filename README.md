@@ -31,11 +31,16 @@ dependencyResolutionManagement {
 
 // build.gradle.kts
 dependencies {
-    implementation("com.erkankrcr:corotimer:1.0.0") // JVM
-    // implementation("com.erkankrcr:corotimer-android:1.0.0") is resolved automatically for
-    // Android targets by the Kotlin Multiplatform plugin; you don't reference it directly.
+    implementation("com.erkankrcr:corotimer:1.0.0")
 }
 ```
+
+One coordinate, used identically whether the consuming module is a plain JVM project or a Kotlin
+Multiplatform module's `androidMain`/`commonMain`. `com.erkankrcr:corotimer` is a single Gradle
+module, not a group of separate libraries to pick between — the Kotlin Multiplatform Gradle plugin
+publishes it as one "root" artifact plus a per-target one (`corotimer-jvm`, `corotimer-android`)
+under the same coordinates, and Gradle's dependency resolution picks the right target artifact for
+you from the single line above. You never write `corotimer-jvm` or `corotimer-android` yourself.
 
 ## Countdown timer
 
